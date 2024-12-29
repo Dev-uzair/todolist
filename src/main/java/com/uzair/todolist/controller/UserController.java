@@ -17,7 +17,7 @@ public class UserController {
         this.service = service;
     }
 
-    @PostMapping("/singup")
+    @PostMapping("/signup")
     public ResponseEntity<String> createUser(@RequestBody User request) {
         try {
             service.createUser ( request );

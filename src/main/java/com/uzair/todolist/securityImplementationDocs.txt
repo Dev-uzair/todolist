@@ -1,0 +1,37 @@
+first we will do basic security by adding spring security then jwt security
+basic security
+
+add spring security dependency
+     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+
+you will get an auto generated password by which you have to login
+and default username will be user
+
+but we want to use db user table for credential of user password
+
+1. so make a config package --> add a security config class look in config package
+2. make user model compatible to spring security by making  a UserSecurity class which Implement UserDetails interface
+        UserSecurity  --> have User field which we are injecting by contructor injection
+        *remember we dont need to autowired it *
+        look in overriden methods and retrun the required values
+        getAuthority method require list of granted authority
+        -->
+        we make it by instantiating Simple Granted Authority with our User Role
+        we had also add a user role in user table
+
+3. now make a service class of CustomUserDetailsService which implements UserDetailsService
+    and overide method loadbyusername we are taking email instead of name ;
+
+4. now open jet client and test
+
+
+

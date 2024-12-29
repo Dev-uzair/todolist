@@ -1,9 +1,7 @@
 package com.uzair.todolist.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.uzair.todolist.util.Role;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -19,4 +17,6 @@ public class User {
     private String name;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
