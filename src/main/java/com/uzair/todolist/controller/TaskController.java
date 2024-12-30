@@ -44,7 +44,7 @@ public class TaskController {
         }
     }
 
-    @GetMapping("user/{userId}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<Task>> findTasksByUserId(@PathVariable Long userId) {
         try {
             return new ResponseEntity<> ( service.findTasksByUserId ( userId ), HttpStatus.OK );
