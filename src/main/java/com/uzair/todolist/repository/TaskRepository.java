@@ -10,6 +10,8 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
+
     @Query("Select t from Task t where t.user.userId= :userId")
+//    @Query(nativeQuery = true,value = "")
     List<Task> findTaskByUserId(@Param("userId") Long userId);
 }
