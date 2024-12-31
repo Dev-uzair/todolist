@@ -1,5 +1,6 @@
-package com.uzair.todolist.model;
+package com.uzair.todolist.security;
 
+import com.uzair.todolist.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +27,6 @@ public class UserSecurity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getName ();
+        return user.getEmail ();
     }
 }

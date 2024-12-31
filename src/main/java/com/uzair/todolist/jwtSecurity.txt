@@ -1,0 +1,43 @@
+add these dependencies
+
+                 <dependency>
+                     <groupId>io.jsonwebtoken</groupId>
+                     <artifactId>jjwt-api</artifactId>
+                     <version>0.12.6</version>
+                 </dependency>
+                 <dependency>
+                     <groupId>io.jsonwebtoken</groupId>
+                     <artifactId>jjwt-impl</artifactId>
+                     <version>0.12.6</version>
+                     <scope>runtime</scope>
+                 </dependency>
+                 <dependency>
+                     <groupId>io.jsonwebtoken</groupId>
+                     <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+                     <version>0.12.6</version>
+                     <scope>runtime</scope>
+                 </dependency>
+
+
+2. make jwt util class
+                        generateToken
+                        createToken
+                        validateToken
+                        isTokenExpired
+                        extractExpiration
+                        extractUsername
+                        extractClaims
+
+3. JWT filter class
+
+                        doFilterInternal
+
+4. update security config
+    add session management to stateless in securityFilterchain Method;
+
+    add jwt filter field
+
+    then in security filer method remove httpBasic and add jwtFilter
+
+    add method authenticationManager
+
