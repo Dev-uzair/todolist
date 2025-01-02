@@ -1,0 +1,10 @@
+find table which we have to use and check that table have
+
+username
+password
+role
+in our case we use --> User
+implements UserDetails
+
+we have open an endpoint for user to enter
+configure it in SecurityConfig
