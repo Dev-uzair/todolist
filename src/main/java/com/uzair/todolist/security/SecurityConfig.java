@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,6 +27,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.csrf ( AbstractHttpConfigurer::disable )
+                .sessionManagement ( session->session.
+                        sessionCreationPolicy ( SessionCreationPolicy.STATELESS ))
                 .authorizeHttpRequests (
                         auth -> auth
                                 .requestMatchers ( "/users/signup" )
@@ -33,10 +36,19 @@ public class SecurityConfig {
                                 .anyRequest ( )
                                 .authenticated ( )
 
+
                 )
-                .userDetailsService ( customUserDetailService )
+//                .sessionManagement(session -> session
+//                        .sessionCreationPolicy( SessionCreationPolicy.IF_REQUIRED)
+//                        .maximumSessions(1)  // One session per user
+//                        .expiredUrl("/login?expired")
+//                )
+//                .rememberMe(remember -> remember
+//                        .key("uniqueAndSecret")
+//                        .tokenValiditySeconds(86400)) // 24 hours
+
+                        .userDetailsService ( customUserDetailService )
                 .httpBasic ( withDefaults ( ) )
-//                .formLogin ( withDefaults ( ) )
         ;
 
         return http.build ( );
@@ -62,7 +74,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        System.out.println ( "4 " );
+//        System.out.println ( "4 " );
         return new BCryptPasswordEncoder ( );
     }
 }
