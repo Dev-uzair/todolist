@@ -1,0 +1,38 @@
+check if your basic security working fine after that
+you have to implement this
+1. add jwt dependencies -->  go to maven repository and search
+                        "jjwt"
+        -->    add jackson, impl , api dependency
+        -->    maven reload
+
+2. make JwtUtils method which we will use
+        for
+                                    generateToken
+                                    validateToken
+                                    isTokenExpired
+                                    extractExpiration
+                                    extractUsername
+                                    extractClaims
+
+3. after that make Jwt filter extend it with OncePerRequestFilter
+    and override the method "doFIlterInternal"
+
+4. modify security config
+        -->.sessionManagement ( session->session.
+                                   sessionCreationPolicy ( SessionCreationPolicy.STATELESS ))
+            default behaviour of security is statefull
+       --> open login end point
+       -->remove basic security and add jwt filter
+
+       --> add authentication manager bean as we are going to use it in login process
+
+5. add login endpoint in user controller
+                we will make a request class of only email and password
+                and one response class with token field
+                so we can get the token in tokenresponse
+
+    now we can access every end point with this generated token
+
+run the app now.
+
+
